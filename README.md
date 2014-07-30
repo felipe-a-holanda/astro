@@ -13,3 +13,10 @@ git clone https://github.com/flp9001/astro.git
 cd astro
 fab local setup
 ```
+
+
+Running local
+--------------
+```
+python manage.py run
+```
