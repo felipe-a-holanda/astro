@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <td>Objeto</td>
+                    <td>Ângulo</td>
+                    <td>Signo</td>
+                    
+                </tr>
+            </thead>
+            {% for planet in planets %}
+            <tr>
+                
+                <td>{{ planet.name }}</td>
+                <td>{{ planet.angle }}</td>
+                <td>{{ planet.sign }}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

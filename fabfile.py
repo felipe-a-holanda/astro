@@ -32,13 +32,18 @@ def virtualenv():
 def _install_dependencies():
     with virtualenv():
         env.run("pip install -r {directory}/requirements.txt".format(**env))
+
+def _restart_webserver():
+    env.run('service apache2 restart')
     
 @task
 def deploy():
     with cd(env.directory):
+        env.run("git pull")
         env.run("git reset --hard")
         env.run("git checkout -f")
     _install_dependencies()
+    _restart_webserver()
         
 
 
