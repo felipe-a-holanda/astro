@@ -12,7 +12,7 @@ def blah():
     t[3]+=t[4]/60.0
     t=t[:4]
     j = swe.julday(*t)
-    txt=str(d)+"\n<br>\n<br\n<br\n<br\n<br>\n"
+    txt=str(d)+"\n<br>\n"
     for i in range(10):
         a = swe.calc_ut(j,i)[0]
         s = signs[int(a/30)]
