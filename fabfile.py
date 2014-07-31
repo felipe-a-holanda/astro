@@ -8,9 +8,10 @@ from fabric.api import *
 @task
 def local():
     env.run = lrun
+    env.directory = '.'
     env.activate = '. {directory}/env/bin/activate'.format(**env)
     env.hosts = ['localhost']
-    env.directory = '.'
+    
     
 
 @task
@@ -51,8 +52,7 @@ def deploy():
 @task
 def setup():
     env.run('virtualenv env')
-    with virtualenv():
-        env.run('pip freeze')
+    _install_dependencies()
     
 
 
