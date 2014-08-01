@@ -39,7 +39,7 @@ class Planet(object):
         width = 20
         r = height/2
         
-        svg = dwg.svg(id=self.name)
+        svg = dwg.svg(id=self.name, onclick="showTitle(this)")
         g = dwg.g()
         angle = self.angle
         pos = polarToCartesian(center, radius, angle)
@@ -77,7 +77,7 @@ class Aspect(object):
         a2 = planet2.angle
         p1 = polarToCartesian(center, radius, a1)
         p2 = polarToCartesian(center, radius, a2)
-        line = dwg.line(p1,p2, id=planet1.name+"_"+planet2.name)
+        line = dwg.line(p1,p2, id=planet1.name+"_"+planet2.name, onclick="showTitle(this)")
         
         diff = lambda x,y: min((2 * 180.0) - abs(x - y), abs(x - y))
         angle = diff(a1, a2)
@@ -166,7 +166,7 @@ class Sign(object):
         width=30
         colors=['red','green','yellow','blue']
         
-        svg = dwg.svg(id=self.name)
+        svg = dwg.svg(id=self.name, onclick="showTitle(this)")
         g = dwg.g()
         pos = polarToCartesian((center[0],center[1]-height/2),r1-width/2,0)
         img = dwg.image('signs/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
@@ -197,6 +197,9 @@ class Chart(object):
     
     def draw(self, name):
         dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
+        dwg.add(dwg.script(content="""function showTitle(o){
+            alert(o.getElementsByTagName("title")[0].textContent);
+        }"""))
         dwg.add(self._draw_signs(dwg))
         dwg.add(self._draw_aspects(dwg))
         dwg.add(self._draw_planets(dwg))
@@ -325,4 +328,5 @@ def dms(degrees):
 
 if __name__ == '__main__':
     name = "astro/static/img/chart.svg"
+    name = "static/img/chart.svg"
     Chart().draw(name)
