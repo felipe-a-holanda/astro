@@ -8,9 +8,10 @@ from fabric.api import *
 @task
 def local():
     env.run = lrun
+    env.directory = '.'
     env.activate = '. {directory}/env/bin/activate'.format(**env)
     env.hosts = ['localhost']
-    env.directory = '.'
+    
     
 
 @task

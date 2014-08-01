@@ -1,0 +1,520 @@
+<?xml version="1.0" ?>
+<svg baseProfile="full" height="600" version="1.1" width="600" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<svg id="zodiac">
+		<defs/>
+		<svg id="Aries">
+			<defs/>
+			<path d="M 100.0 300.0 L 60.0, 300.0 A 240 240 0 0 0 92.1539030917 420.0 L 126.794919243 400.0 A 200 200 0 0 1 100.0 300.0 " fill="red" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♈ Aries
+
+♅ 16° 27'</title>
+				<path d="M 60.0 300.0 L 10.0, 300.0 A 290 290 0 0 0 48.8526329025 445.0 L 92.1539030917 420.0 A 240 240 0 0 1 60.0 300.0 " fill="red" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-15,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/01-aries.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Taurus">
+			<defs/>
+			<path d="M 126.794919243 400.0 L 92.1539030917, 420.0 A 240 240 0 0 0 180.0 507.846096908 L 200.0 473.205080757 A 200 200 0 0 1 126.794919243 400.0 " fill="green" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♉ Taurus</title>
+				<path d="M 92.1539030917 420.0 L 48.8526329025, 445.0 A 290 290 0 0 0 155.0 551.147367097 L 180.0 507.846096908 A 240 240 0 0 1 92.1539030917 420.0 " fill="green" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-45,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/02-taurus.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Gemini">
+			<defs/>
+			<path d="M 200.0 473.205080757 L 180.0, 507.846096908 A 240 240 0 0 0 300.0 540.0 L 300.0 500.0 A 200 200 0 0 1 200.0 473.205080757 " fill="yellow" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♊ Gemini</title>
+				<path d="M 180.0 507.846096908 L 155.0, 551.147367097 A 290 290 0 0 0 300.0 590.0 L 300.0 540.0 A 240 240 0 0 1 180.0 507.846096908 " fill="yellow" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-75,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/03-gemini.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Cancer">
+			<defs/>
+			<path d="M 300.0 500.0 L 300.0, 540.0 A 240 240 0 0 0 420.0 507.846096908 L 400.0 473.205080757 A 200 200 0 0 1 300.0 500.0 " fill="blue" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♋ Cancer
+
+♀ 16° 58'</title>
+				<path d="M 300.0 540.0 L 300.0, 590.0 A 290 290 0 0 0 445.0 551.147367097 L 420.0 507.846096908 A 240 240 0 0 1 300.0 540.0 " fill="blue" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-105,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/04-cancer.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Leo">
+			<defs/>
+			<path d="M 400.0 473.205080757 L 420.0, 507.846096908 A 240 240 0 0 0 507.846096908 420.0 L 473.205080757 400.0 A 200 200 0 0 1 400.0 473.205080757 " fill="red" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♌ Leo
+
+☉ 9° 16'
+☿ 1° 21'
+♃ 3° 35'</title>
+				<path d="M 420.0 507.846096908 L 445.0, 551.147367097 A 290 290 0 0 0 551.147367097 445.0 L 507.846096908 420.0 A 240 240 0 0 1 420.0 507.846096908 " fill="red" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-135,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/05-leo.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Virgo">
+			<defs/>
+			<path d="M 473.205080757 400.0 L 507.846096908, 420.0 A 240 240 0 0 0 540.0 300.0 L 500.0 300.0 A 200 200 0 0 1 473.205080757 400.0 " fill="green" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♍ Virgo</title>
+				<path d="M 507.846096908 420.0 L 551.147367097, 445.0 A 290 290 0 0 0 590.0 300.0 L 540.0 300.0 A 240 240 0 0 1 507.846096908 420.0 " fill="green" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-165,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/06-virgo.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Libra">
+			<defs/>
+			<path d="M 500.0 300.0 L 540.0, 300.0 A 240 240 0 0 0 507.846096908 180.0 L 473.205080757 200.0 A 200 200 0 0 1 500.0 300.0 " fill="yellow" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♎ Libra
+
+☽ 11° 19'</title>
+				<path d="M 540.0 300.0 L 590.0, 300.0 A 290 290 0 0 0 551.147367097 155.0 L 507.846096908 180.0 A 240 240 0 0 1 540.0 300.0 " fill="yellow" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-195,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/07-libra.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Scorpio">
+			<defs/>
+			<path d="M 473.205080757 200.0 L 507.846096908, 180.0 A 240 240 0 0 0 420.0 92.1539030917 L 400.0 126.794919243 A 200 200 0 0 1 473.205080757 200.0 " fill="blue" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♏ Scorpio
+
+♂ 3° 28'
+♄ 16° 45'</title>
+				<path d="M 507.846096908 180.0 L 551.147367097, 155.0 A 290 290 0 0 0 445.0 48.8526329025 L 420.0 92.1539030917 A 240 240 0 0 1 507.846096908 180.0 " fill="blue" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-225,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/08-scorpio.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Sagittarius">
+			<defs/>
+			<path d="M 400.0 126.794919243 L 420.0, 92.1539030917 A 240 240 0 0 0 300.0 60.0 L 300.0 100.0 A 200 200 0 0 1 400.0 126.794919243 " fill="red" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♐ Sagittarius</title>
+				<path d="M 420.0 92.1539030917 L 445.0, 48.8526329025 A 290 290 0 0 0 300.0 10.0 L 300.0 60.0 A 240 240 0 0 1 420.0 92.1539030917 " fill="red" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-255,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/09-sagittarius.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Capricorn">
+			<defs/>
+			<path d="M 300.0 100.0 L 300.0, 60.0 A 240 240 0 0 0 180.0 92.1539030917 L 200.0 126.794919243 A 200 200 0 0 1 300.0 100.0 " fill="green" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♑ Capricorn
+
+♇ 11° 37'</title>
+				<path d="M 300.0 60.0 L 300.0, 10.0 A 290 290 0 0 0 155.0 48.8526329025 L 180.0 92.1539030917 A 240 240 0 0 1 300.0 60.0 " fill="green" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-285,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/10-capricorn.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Aquarius">
+			<defs/>
+			<path d="M 200.0 126.794919243 L 180.0, 92.1539030917 A 240 240 0 0 0 92.1539030917 180.0 L 126.794919243 200.0 A 200 200 0 0 1 200.0 126.794919243 " fill="yellow" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♒ Aquarius</title>
+				<path d="M 180.0 92.1539030917 L 155.0, 48.8526329025 A 290 290 0 0 0 48.8526329025 155.0 L 92.1539030917 180.0 A 240 240 0 0 1 180.0 92.1539030917 " fill="yellow" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-315,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/11-aquarius.svg" y="285.0"/>
+			</g>
+		</svg>
+		<svg id="Pisces">
+			<defs/>
+			<path d="M 126.794919243 200.0 L 92.1539030917, 180.0 A 240 240 0 0 0 60.0 300.0 L 100.0 300.0 A 200 200 0 0 1 126.794919243 200.0 " fill="blue" fill-opacity="0.25" stroke="black" stroke-width="1"/>
+			<g>
+				<title>♓ Pisces
+
+♆ 6° 54'</title>
+				<path d="M 92.1539030917 180.0 L 48.8526329025, 155.0 A 290 290 0 0 0 10.0 300.0 L 60.0 300.0 A 240 240 0 0 1 92.1539030917 180.0 " fill="blue" fill-opacity="0.5" stroke="black" stroke-width="2"/>
+				<image height="30" transform="rotate(-345,300,300) rotate(-90,40.0,300.0)" width="30" x="25.0" xlink:href="signs/12-pisces.svg" y="285.0"/>
+			</g>
+		</svg>
+	</svg>
+	<svg id="aspects">
+		<defs/>
+		<line id="Sun_Moon" stroke="blue" stroke-opacity="1" stroke-width="1" x1="426.623180982" x2="496.101193312" y1="454.811401511" y2="260.702137698">
+			<title>Sun sextile Moon 62° 3'</title>
+			<desc> 62° 3'</desc>
+		</line>
+		<line id="Sun_Mercury" stroke="none" stroke-opacity="0.208473788914" stroke-width="1" x1="426.623180982" x2="404.09799027" y1="454.811401511" y2="470.773558907">
+			<title>Sun conjunct Mercury 7° 54'</title>
+			<desc> 7° 54'</desc>
+		</line>
+		<line id="Sun_Venus" stroke="none" stroke-opacity="0.230950930899" stroke-width="1" x1="426.623180982" x2="358.377110283" y1="454.811401511" y2="491.290650569">
+			<title>Sun 30 Venus 22° 18'</title>
+			<desc> 22° 18'</desc>
+		</line>
+		<line id="Sun_Mars" stroke="red" stroke-opacity="0.420267692454" stroke-width="1" x1="426.623180982" x2="466.809791738" y1="454.811401511" y2="189.661913283">
+			<title>Sun square Mars 84° 12'</title>
+			<desc> 84° 12'</desc>
+		</line>
+		<line id="Sun_Jupiter" stroke="none" stroke-opacity="0.431286504039" stroke-width="1" x1="426.623180982" x2="410.658681964" y1="454.811401511" y2="466.597287211">
+			<title>Sun conjunct Jupiter 5° 41'</title>
+			<desc> 5° 41'</desc>
+		</line>
+		<line id="Sun_Saturn" stroke="red" stroke-opacity="0.252380128653" stroke-width="1" x1="426.623180982" x2="437.019859847" y1="454.811401511" y2="154.310062092">
+			<title>Sun square Saturn 97° 28'</title>
+			<desc> 97° 28'</desc>
+		</line>
+		<line id="Sun_Uranus" stroke="blue" stroke-opacity="0.281667759252" stroke-width="1" x1="426.623180982" x2="108.200110325" y1="454.811401511" y2="356.68158714">
+			<title>Sun trine Uranus 112° 49'</title>
+			<desc> 112° 49'</desc>
+		</line>
+		<line id="Sun_Neptune" stroke="none" stroke-opacity="1" stroke-width="1" x1="426.623180982" x2="116.014659214" y1="454.811401511" y2="221.581925707">
+			<title>Sun 150 Neptune 152° 21'</title>
+			<desc> 152° 21'</desc>
+		</line>
+		<line id="Sun_Pluto" stroke="none" stroke-opacity="1" stroke-width="1" x1="426.623180982" x2="259.727357471" y1="454.811401511" y2="104.096671126">
+			<title>Sun 150 Pluto 152° 20'</title>
+			<desc> 152° 20'</desc>
+		</line>
+		<line id="Moon_Mercury" stroke="blue" stroke-opacity="0.00333840334093" stroke-width="1" x1="496.101193312" x2="404.09799027" y1="260.702137698" y2="470.773558907">
+			<title>Moon sextile Mercury 69° 57'</title>
+			<desc> 69° 57'</desc>
+		</line>
+		<line id="Moon_Venus" stroke="red" stroke-opacity="0.436086316471" stroke-width="1" x1="496.101193312" x2="358.377110283" y1="260.702137698" y2="491.290650569">
+			<title>Moon square Venus 84° 21'</title>
+			<desc> 84° 21'</desc>
+		</line>
+		<line id="Moon_Mars" stroke="none" stroke-opacity="0.215132306882" stroke-width="1" x1="496.101193312" x2="466.809791738" y1="260.702137698" y2="189.661913283">
+			<title>Moon 30 Mars 22° 9'</title>
+			<desc> 22° 9'</desc>
+		</line>
+		<line id="Moon_Jupiter" stroke="blue" stroke-opacity="0.226151118467" stroke-width="1" x1="496.101193312" x2="410.658681964" y1="260.702137698" y2="466.597287211">
+			<title>Moon sextile Jupiter 67° 44'</title>
+			<desc> 67° 44'</desc>
+		</line>
+		<line id="Moon_Saturn" stroke="none" stroke-opacity="0.457515514226" stroke-width="1" x1="496.101193312" x2="437.019859847" y1="260.702137698" y2="154.310062092">
+			<title>Moon 30 Saturn 35° 25'</title>
+			<desc> 35° 25'</desc>
+		</line>
+		<line id="Moon_Uranus" stroke="red" stroke-opacity="0.486803144824" stroke-width="1" x1="496.101193312" x2="108.200110325" y1="260.702137698" y2="356.68158714">
+			<title>Moon opposite Uranus 174° 52'</title>
+			<desc> 174° 52'</desc>
+		</line>
+		<line id="Moon_Neptune" stroke="none" stroke-opacity="0.558363073074" stroke-width="1" x1="496.101193312" x2="116.014659214" y1="260.702137698" y2="221.581925707">
+			<title>Moon 150 Neptune 145° 35'</title>
+			<desc> 145° 35'</desc>
+		</line>
+		<line id="Moon_Pluto" stroke="red" stroke-opacity="1" stroke-width="3" x1="496.101193312" x2="259.727357471" y1="260.702137698" y2="104.096671126">
+			<title>Moon square Pluto 90° 17'</title>
+			<desc> 90° 17'</desc>
+		</line>
+		<line id="Mercury_Venus" stroke="none" stroke-opacity="-0.439424719812" stroke-width="1" x1="404.09799027" x2="358.377110283" y1="470.773558907" y2="491.290650569">
+			<title>Mercury conjunct Venus 14° 23'</title>
+			<desc> 14° 23'</desc>
+		</line>
+		<line id="Mercury_Mars" stroke="red" stroke-opacity="1" stroke-width="1" x1="404.09799027" x2="466.809791738" y1="470.773558907" y2="189.661913283">
+			<title>Mercury square Mars 92° 7'</title>
+			<desc> 92° 7'</desc>
+		</line>
+		<line id="Mercury_Jupiter" stroke="none" stroke-opacity="1" stroke-width="1" x1="404.09799027" x2="410.658681964" y1="470.773558907" y2="466.597287211">
+			<title>Mercury conjunct Jupiter 2° 13'</title>
+			<desc> 2° 13'</desc>
+		</line>
+		<line id="Mercury_Saturn" stroke="none" stroke-opacity="-0.460853917567" stroke-width="1" x1="404.09799027" x2="437.019859847" y1="470.773558907" y2="154.310062092">
+			<title>Mercury trine Saturn 105° 23'</title>
+			<desc> 105° 23'</desc>
+		</line>
+		<line id="Mercury_Uranus" stroke="none" stroke-opacity="-0.490141548165" stroke-width="1" x1="404.09799027" x2="108.200110325" y1="470.773558907" y2="356.68158714">
+			<title>Mercury square Uranus 104° 54'</title>
+			<desc> 104° 54'</desc>
+		</line>
+		<line id="Mercury_Neptune" stroke="none" stroke-opacity="0.444975330267" stroke-width="1" x1="404.09799027" x2="116.014659214" y1="470.773558907" y2="221.581925707">
+			<title>Mercury 150 Neptune 144° 26'</title>
+			<desc> 144° 26'</desc>
+		</line>
+		<line id="Mercury_Pluto" stroke="none" stroke-opacity="-0.0251565117199" stroke-width="1" x1="404.09799027" x2="259.727357471" y1="470.773558907" y2="104.096671126">
+			<title>Mercury 150 Pluto 160° 15'</title>
+			<desc> 160° 15'</desc>
+		</line>
+		<line id="Venus_Mars" stroke="none" stroke-opacity="-0.348781376647" stroke-width="1" x1="358.377110283" x2="466.809791738" y1="491.290650569" y2="189.661913283">
+			<title>Venus trine Mars 106° 30'</title>
+			<desc> 106° 30'</desc>
+		</line>
+		<line id="Venus_Jupiter" stroke="none" stroke-opacity="-0.337762565062" stroke-width="1" x1="358.377110283" x2="410.658681964" y1="491.290650569" y2="466.597287211">
+			<title>Venus 30 Jupiter 16° 37'</title>
+			<desc> 16° 37'</desc>
+		</line>
+		<line id="Venus_Saturn" stroke="blue" stroke-opacity="1" stroke-width="3" x1="358.377110283" x2="437.019859847" y1="491.290650569" y2="154.310062092">
+			<title>Venus trine Saturn 119° 47'</title>
+			<desc> 119° 47'</desc>
+		</line>
+		<line id="Venus_Uranus" stroke="red" stroke-opacity="1" stroke-width="3" x1="358.377110283" x2="108.200110325" y1="491.290650569" y2="356.68158714">
+			<title>Venus square Uranus 90° 30'</title>
+			<desc> 90° 30'</desc>
+		</line>
+		<line id="Venus_Neptune" stroke="none" stroke-opacity="-0.00555061045499" stroke-width="1" x1="358.377110283" x2="116.014659214" y1="491.290650569" y2="221.581925707">
+			<title>Venus trine Neptune 130° 3'</title>
+			<desc> 130° 3'</desc>
+		</line>
+		<line id="Venus_Pluto" stroke="red" stroke-opacity="0.464581231532" stroke-width="1" x1="358.377110283" x2="259.727357471" y1="491.290650569" y2="104.096671126">
+			<title>Venus opposite Pluto 174° 38'</title>
+			<desc> 174° 38'</desc>
+		</line>
+		<line id="Mars_Jupiter" stroke="red" stroke-opacity="1" stroke-width="3" x1="466.809791738" x2="410.658681964" y1="189.661913283" y2="466.597287211">
+			<title>Mars square Jupiter 89° 53'</title>
+			<desc> 89° 53'</desc>
+		</line>
+		<line id="Mars_Saturn" stroke="none" stroke-opacity="-0.327352178893" stroke-width="1" x1="466.809791738" x2="437.019859847" y1="189.661913283" y2="154.310062092">
+			<title>Mars conjunct Saturn 13° 16'</title>
+			<desc> 13° 16'</desc>
+		</line>
+		<line id="Mars_Uranus" stroke="none" stroke-opacity="-0.298064548294" stroke-width="1" x1="466.809791738" x2="108.200110325" y1="189.661913283" y2="356.68158714">
+			<title>Mars 150 Uranus 162° 58'</title>
+			<desc> 162° 58'</desc>
+		</line>
+		<line id="Mars_Neptune" stroke="blue" stroke-opacity="0.656769233808" stroke-width="1" x1="466.809791738" x2="116.014659214" y1="189.661913283" y2="221.581925707">
+			<title>Mars trine Neptune 123° 25'</title>
+			<desc> 123° 25'</desc>
+		</line>
+		<line id="Mars_Pluto" stroke="blue" stroke-opacity="0.186637391821" stroke-width="1" x1="466.809791738" x2="259.727357471" y1="189.661913283" y2="104.096671126">
+			<title>Mars sextile Pluto 68° 8'</title>
+			<desc> 68° 8'</desc>
+		</line>
+		<line id="Jupiter_Saturn" stroke="none" stroke-opacity="-0.316333367307" stroke-width="1" x1="410.658681964" x2="437.019859847" y1="466.597287211" y2="154.310062092">
+			<title>Jupiter square Saturn 103° 9'</title>
+			<desc> 103° 9'</desc>
+		</line>
+		<line id="Jupiter_Uranus" stroke="none" stroke-opacity="-0.287045736709" stroke-width="1" x1="410.658681964" x2="108.200110325" y1="466.597287211" y2="356.68158714">
+			<title>Jupiter trine Uranus 107° 7'</title>
+			<desc> 107° 7'</desc>
+		</line>
+		<line id="Jupiter_Neptune" stroke="none" stroke-opacity="0.667788045393" stroke-width="1" x1="410.658681964" x2="116.014659214" y1="466.597287211" y2="221.581925707">
+			<title>Jupiter 150 Neptune 146° 40'</title>
+			<desc> 146° 40'</desc>
+		</line>
+		<line id="Jupiter_Pluto" stroke="none" stroke-opacity="0.197656203406" stroke-width="1" x1="410.658681964" x2="259.727357471" y1="466.597287211" y2="104.096671126">
+			<title>Jupiter 150 Pluto 158° 1'</title>
+			<desc> 158° 1'</desc>
+		</line>
+		<line id="Saturn_Uranus" stroke="none" stroke-opacity="1" stroke-width="3" x1="437.019859847" x2="108.200110325" y1="154.310062092" y2="356.68158714">
+			<title>Saturn 150 Uranus 149° 42'</title>
+			<desc> 149° 42'</desc>
+		</line>
+		<line id="Saturn_Neptune" stroke="blue" stroke-opacity="0.0158785872994" stroke-width="1" x1="437.019859847" x2="116.014659214" y1="154.310062092" y2="221.581925707">
+			<title>Saturn trine Neptune 110° 9'</title>
+			<desc> 110° 9'</desc>
+		</line>
+		<line id="Saturn_Pluto" stroke="blue" stroke-opacity="0.486010429287" stroke-width="1" x1="437.019859847" x2="259.727357471" y1="154.310062092" y2="104.096671126">
+			<title>Saturn sextile Pluto 54° 51'</title>
+			<desc> 54° 51'</desc>
+		</line>
+		<line id="Uranus_Neptune" stroke="none" stroke-opacity="0.0451662178978" stroke-width="1" x1="108.200110325" x2="116.014659214" y1="356.68158714" y2="221.581925707">
+			<title>Uranus 30 Neptune 39° 32'</title>
+			<desc> 39° 32'</desc>
+		</line>
+		<line id="Uranus_Pluto" stroke="red" stroke-opacity="0.515298059885" stroke-width="1" x1="108.200110325" x2="259.727357471" y1="356.68158714" y2="104.096671126">
+			<title>Uranus square Pluto 94° 50'</title>
+			<desc> 94° 50'</desc>
+		</line>
+		<line id="Neptune_Pluto" stroke="blue" stroke-opacity="0.529868158013" stroke-width="1" x1="116.014659214" x2="259.727357471" y1="221.581925707" y2="104.096671126">
+			<title>Neptune sextile Pluto 55° 17'</title>
+			<desc> 55° 17'</desc>
+		</line>
+	</svg>
+	<svg id="planets">
+		<defs/>
+		<svg id="Pluto">
+			<defs/>
+			<g>
+				<title>♇ 11 ♑ 37'
+
+☽ □ ♇ 90° 17'
+♀ ☍ ♇ 174° 38'
+♂ ⚹ ♇ 68° 8'
+♄ ⚹ ♇ 54° 51'
+♅ □ ♇ 94° 50'
+♆ ⚹ ♇ 55° 17'</title>
+				<desc>♇ 11 ♑ 37'
+
+☽ □ ♇ 90° 17'
+♀ ☍ ♇ 174° 38'
+♂ ⚹ ♇ 68° 8'
+♄ ⚹ ♇ 54° 51'
+♅ □ ♇ 94° 50'
+♆ ⚹ ♇ 55° 17'</desc>
+				<circle cx="255.700093219" cy="84.506338239" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="245.700093219" xlink:href="planets/10-pluto.svg" y="74.506338239"/>
+			</g>
+		</svg>
+		<svg id="Neptune">
+			<defs/>
+			<g>
+				<title>♆ 6 ♓ 54'
+
+♂ △ ♆ 123° 25'
+♄ △ ♆ 110° 9'
+♆ ⚹ ♇ 55° 17'</title>
+				<desc>♆ 6 ♓ 54'
+
+♂ △ ♆ 123° 25'
+♄ △ ♆ 110° 9'
+♆ ⚹ ♇ 55° 17'</desc>
+				<circle cx="97.6161251353" cy="213.740118278" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="87.6161251353" xlink:href="planets/09-neptune.svg" y="203.740118278"/>
+			</g>
+		</svg>
+		<svg id="Uranus">
+			<defs/>
+			<g>
+				<title>♅ 16 ♈ 27'
+
+☉ △ ♅ 112° 49'
+☽ ☍ ♅ 174° 52'
+♀ □ ♅ 90° 30'
+♅ □ ♇ 94° 50'</title>
+				<desc>♅ 16 ♈ 27'
+
+☉ △ ♅ 112° 49'
+☽ ☍ ♅ 174° 52'
+♀ □ ♅ 90° 30'
+♅ □ ♇ 94° 50'</desc>
+				<circle cx="89.0201213575" cy="362.349745854" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="79.0201213575" xlink:href="planets/08-uranus.svg" y="352.349745854"/>
+			</g>
+		</svg>
+		<svg id="Saturn">
+			<defs/>
+			<g>
+				<title>♄ 16 ♏ 45'
+
+☉ □ ♄ 97° 28'
+♀ △ ♄ 119° 47'
+♄ △ ♆ 110° 9'
+♄ ⚹ ♇ 54° 51'</title>
+				<desc>♄ 16 ♏ 45'
+
+☉ □ ♄ 97° 28'
+♀ △ ♄ 119° 47'
+♄ △ ♆ 110° 9'
+♄ ⚹ ♇ 54° 51'</desc>
+				<circle cx="450.721845831" cy="139.741068301" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="440.721845831" xlink:href="planets/07-saturn.svg" y="129.741068301"/>
+			</g>
+		</svg>
+		<svg id="Jupiter">
+			<defs/>
+			<g>
+				<title>♃ 3 ♌ 35'
+
+☉ ☌ ♃ 5° 41'
+☽ ⚹ ♃ 67° 44'
+☿ ☌ ♃ 2° 13'
+♂ □ ♃ 89° 53'</title>
+				<desc>♃ 3 ♌ 35'
+
+☉ ☌ ♃ 5° 41'
+☽ ⚹ ♃ 67° 44'
+☿ ☌ ♃ 2° 13'
+♂ □ ♃ 89° 53'</desc>
+				<circle cx="421.72455016" cy="483.257015932" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="411.72455016" xlink:href="planets/06-jupiter.svg" y="473.257015932"/>
+			</g>
+		</svg>
+		<svg id="Mars">
+			<defs/>
+			<g>
+				<title>♂ 3 ♏ 28'
+
+☉ □ ♂ 84° 12'
+☿ □ ♂ 92° 7'
+♂ □ ♃ 89° 53'
+♂ △ ♆ 123° 25'
+♂ ⚹ ♇ 68° 8'</title>
+				<desc>♂ 3 ♏ 28'
+
+☉ □ ♂ 84° 12'
+☿ □ ♂ 92° 7'
+♂ □ ♃ 89° 53'
+♂ △ ♆ 123° 25'
+♂ ⚹ ♇ 68° 8'</desc>
+				<circle cx="483.490770912" cy="178.628104611" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="473.490770912" xlink:href="planets/05-mars.svg" y="168.628104611"/>
+			</g>
+		</svg>
+		<svg id="Venus">
+			<defs/>
+			<g>
+				<title>♀ 16 ♋ 58'
+
+☽ □ ♀ 84° 21'
+♀ △ ♄ 119° 47'
+♀ □ ♅ 90° 30'
+♀ ☍ ♇ 174° 38'</title>
+				<desc>♀ 16 ♋ 58'
+
+☽ □ ♀ 84° 21'
+♀ △ ♄ 119° 47'
+♀ □ ♅ 90° 30'
+♀ ☍ ♇ 174° 38'</desc>
+				<circle cx="364.214821311" cy="510.419715626" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="354.214821311" xlink:href="planets/04-venus.svg" y="500.419715626"/>
+			</g>
+		</svg>
+		<svg id="Mercury">
+			<defs/>
+			<g>
+				<title>☿ 1 ♌ 21'
+
+☉ ☌ ☿ 7° 54'
+☽ ⚹ ☿ 69° 57'
+☿ □ ♂ 92° 7'
+☿ ☌ ♃ 2° 13'</title>
+				<desc>☿ 1 ♌ 21'
+
+☉ ☌ ☿ 7° 54'
+☽ ⚹ ☿ 69° 57'
+☿ □ ♂ 92° 7'
+☿ ☌ ♃ 2° 13'</desc>
+				<circle cx="414.507789296" cy="487.850914798" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="404.507789296" xlink:href="planets/03-mercury.svg" y="477.850914798"/>
+			</g>
+		</svg>
+		<svg id="Moon">
+			<defs/>
+			<g>
+				<title>☽ 11 ♎ 19'
+
+☉ ⚹ ☽ 62° 3'
+☽ ⚹ ☿ 69° 57'
+☽ □ ♀ 84° 21'
+☽ ⚹ ♃ 67° 44'
+☽ ☍ ♅ 174° 52'
+☽ □ ♇ 90° 17'</title>
+				<desc>☽ 11 ♎ 19'
+
+☉ ⚹ ☽ 62° 3'
+☽ ⚹ ☿ 69° 57'
+☽ □ ♀ 84° 21'
+☽ ⚹ ♃ 67° 44'
+☽ ☍ ♅ 174° 52'
+☽ □ ♇ 90° 17'</desc>
+				<circle cx="515.711312643" cy="256.772351468" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="505.711312643" xlink:href="planets/02-moon.svg" y="246.772351468"/>
+			</g>
+		</svg>
+		<svg id="Sun">
+			<defs/>
+			<g>
+				<title>☉ 9 ♌ 16'
+
+☉ ⚹ ☽ 62° 3'
+☉ ☌ ☿ 7° 54'
+☉ □ ♂ 84° 12'
+☉ ☌ ♃ 5° 41'
+☉ □ ♄ 97° 28'
+☉ △ ♅ 112° 49'</title>
+				<desc>☉ 9 ♌ 16'
+
+☉ ⚹ ☽ 62° 3'
+☉ ☌ ☿ 7° 54'
+☉ □ ♂ 84° 12'
+☉ ☌ ♃ 5° 41'
+☉ □ ♄ 97° 28'
+☉ △ ♅ 112° 49'</desc>
+				<circle cx="439.285499081" cy="470.292541662" fill="white" fill-opacity="0.5" r="10" stroke="black" stroke-width="1"/>
+				<image height="20" width="20" x="429.285499081" xlink:href="planets/01-sun.svg" y="460.292541662"/>
+			</g>
+		</svg>
+	</svg>
+</svg>

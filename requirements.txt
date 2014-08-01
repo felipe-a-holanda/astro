@@ -5,5 +5,7 @@ MarkupSafe==0.23
 Werkzeug==0.9.6
 argparse==1.2.1
 itsdangerous==0.24
+pyparsing==2.0.2
 pyswisseph==2.00.00-2
+svgwrite==1.1.6
 wsgiref==0.1.2
