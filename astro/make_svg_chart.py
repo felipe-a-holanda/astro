@@ -68,7 +68,7 @@ class Aspect(object):
         self.glyph = self.GLYPHS[self.type]
     
     def get_desc(self):
-        d,m,s = dms(self.angle)
+        d,m,s = dms(self.diff)
         return u"%s %s %s %d° %d'"%(self.p1.glyph, self.glyph, self.p2.glyph, d,m)
     
     def draw(self, dwg, center, radius):
@@ -98,13 +98,18 @@ class Aspect(object):
         if aspect_type in [2,4]:
             color='blue'
         
+        orb = self.orb()
         
-        if diff_angle>10:
+        if diff_angle>orb:
             color = 'none'
-        if diff_angle<3:
+        if diff_angle<orb/2:
             linewidth = int(4-diff_angle)
         else:
-            alpha = (10.0-diff_angle)/10
+            
+            alpha = (orb-diff_angle)/orb
+            if alpha<0:
+                color = 'none'
+                
         title = "%s %s %s"%(planet1.name, aspect_name, planet2.name)
         desc = " {0}° {1}'".format(*dms(angle))
         line.set_desc(title+desc, desc)
@@ -115,9 +120,14 @@ class Aspect(object):
     
     def is_visible(self):
         return self.type in [0,2,3,4,6] and self.in_orb()
+        
+    def orb(self):
+        orbs = [15,12,7,7,8,9,9,5,5,5]
+        orb = (orbs[self.p1.index] + orbs[self.p2.index])/2.0
+        return orb
     
     def in_orb(self):
-        return self.diff <10
+        return self.diff < self.orb()
         
     def _diff(self, x, y):
         return min((2 * 180.0) - abs(x - y), abs(x - y))
@@ -177,7 +187,10 @@ class Sign(object):
 
 class Chart(object):
     N_PLANETS = 10
-    def __init__(self):
+    def __init__(self, now=None):
+        self.now = now
+        if not now:
+            self.now = datetime.utcnow()
         self.planets = self._calc_planets()
         self.aspects = self._calc_aspects()
         
@@ -193,7 +206,7 @@ class Chart(object):
     
     
     def _calc_planets(self):
-        d = datetime.utcnow()
+        d = self.now
         t = list(d.timetuple())
         t[3] += t[4]/60.0
         t = t[:4]
