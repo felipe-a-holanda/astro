@@ -235,8 +235,8 @@ class Chart(object):
         var tooltip = document.getElementById(obj.id+"-tooltip");
         tooltip.setAttribute("visibility", "hidden");
     }"""))
-        dwg.add(self._draw_signs(dwg))
         dwg.add(self._draw_aspects(dwg))
+        dwg.add(self._draw_signs(dwg))
         dwg.add(self._draw_planets(dwg))
         dwg.save()
         self._prettify(name)
