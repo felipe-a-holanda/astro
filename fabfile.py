@@ -52,8 +52,7 @@ def deploy():
 @task
 def setup():
     env.run('virtualenv env')
-    with virtualenv():
-        env.run('pip freeze')
+    _install_dependencies()
     
 
 
