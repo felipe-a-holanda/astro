@@ -34,12 +34,20 @@ class Planet(object):
         desc = self.glyph+" "+self.dss(self.angle%30)+'\n\n'+'\n'.join([a.get_desc() for a in self.aspects if a.is_visible()])
         return desc
     
+    def _get_tooltip(self, dwg):
+        svg = dwg.svg(id=self.name+'-tooltip', visibility='hidden' )
+        desc = self.get_desc()
+        for i,t in enumerate(desc.split('\n')):
+            txt = dwg.text(t, (0,15*(i+1)))
+            svg.add(txt)
+        return svg
+    
     def draw(self, dwg, center, radius):
         height = 20
         width = 20
         r = height/2
         
-        svg = dwg.svg(id=self.name, onclick="showTitle(this)")
+        svg = dwg.svg(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
         g = dwg.g()
         angle = self.angle
         pos = polarToCartesian(center, radius, angle)
@@ -52,8 +60,10 @@ class Planet(object):
         
         g.add(circle)
         g.add(img)
-        desc = self.get_desc()
-        g.set_desc(desc,desc)
+        #desc = self.get_desc()
+        #txt = dwg.text(desc, id=self.name+'-tooltip', visibility='hidden')
+        g.add(_get_tooltip(dwg, self.name, self.get_desc()))
+        #g.set_desc(desc,desc)
         svg.add(g)
         return svg
         
@@ -63,13 +73,16 @@ class Aspect(object):
     def __init__(self, planet1, planet2):
         self.p1 = planet1
         self.p2 = planet2
+        self.name = planet1.name+"_"+planet2.name
         self.angle = self._diff(planet1.angle, planet2.angle)
         self.type, self.diff = self._calc_type()
         self.glyph = self.GLYPHS[self.type]
     
     def get_desc(self):
-        d,m,s = dms(self.diff)
+        d,m,s = dms(self.diff)        
         return u"%s %s %s %d° %d'"%(self.p1.glyph, self.glyph, self.p2.glyph, d,m)
+    
+
     
     def draw(self, dwg, center, radius):
         planet1, planet2 = self.p1, self.p2
@@ -77,7 +90,8 @@ class Aspect(object):
         a2 = planet2.angle
         p1 = polarToCartesian(center, radius, a1)
         p2 = polarToCartesian(center, radius, a2)
-        line = dwg.line(p1,p2, id=planet1.name+"_"+planet2.name, onclick="showTitle(this)")
+        svg = dwg.svg(id = self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
+        line = dwg.line(p1,p2,  )
         
         diff = lambda x,y: min((2 * 180.0) - abs(x - y), abs(x - y))
         angle = diff(a1, a2)
@@ -110,13 +124,15 @@ class Aspect(object):
             if alpha<0:
                 color = 'none'
                 
-        title = "%s %s %s"%(planet1.name, aspect_name, planet2.name)
-        desc = " {0}° {1}'".format(*dms(angle))
-        line.set_desc(title+desc, desc)
+        
+        #line.set_desc(title+desc, desc)
+        
         line.stroke(color, linewidth, alpha)
+        #txt = dwg.text(desc, id=self.name+'-tooltip', visibility='hidden')
         
-        
-        return line
+        svg.add(line)
+        svg.add(_get_tooltip(dwg, self.name, self.get_desc()))
+        return svg
     
     def is_visible(self):
         return self.type in [0,2,3,4,6] and self.in_orb()
@@ -159,6 +175,16 @@ class Sign(object):
                 d,m,s = dms(p.angle%30)
                 desc += u"\n%s %d° %d'"%(p.glyph,d,m)
         return desc
+    
+    def _get_tooltip(self, dwg, planets):
+        svg = dwg.svg(id=self.name+'-tooltip', visibility='hidden' )
+        desc = self.get_desc(planets)
+        svg.add(dwg.rect(insert=(0, 0), size=('100%', '100%'), rx=None, ry=None, fill='rgb(50,50,50)'))
+        for i,t in enumerate(desc.split('\n')):
+            txt = dwg.text(t, (0,15*(i+1)))
+            svg.add(txt)
+        return svg
+        
                 
     
     def draw(self, dwg, center, r1, r2, r3, planets):
@@ -166,8 +192,8 @@ class Sign(object):
         width=30
         colors=['red','green','yellow','blue']
         
-        svg = dwg.svg(id=self.name, onclick="showTitle(this)")
-        g = dwg.g()
+        svg = dwg.svg()
+        g = dwg.g(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
         pos = polarToCartesian((center[0],center[1]-height/2),r1-width/2,0)
         img = dwg.image('signs/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
         img.rotate(-self.index*30-15,center)
@@ -177,11 +203,12 @@ class Sign(object):
         a1.fill(colors[self.index%len(colors)], opacity=0.5).stroke('black', width=2)
         a2.fill(colors[self.index%len(colors)], opacity=0.25).stroke('black', width=1)
         a2.opacity=0.2
-        g.set_desc(self.get_desc(planets))
+        #g.set_desc(self.get_desc(planets))
         g.add(a1)
         svg.add(a2)
         g.add(img)
         svg.add(g)
+        svg.add(_get_tooltip(dwg, self.name, self.get_desc(planets)))
         return svg
 
 
@@ -197,9 +224,17 @@ class Chart(object):
     
     def draw(self, name):
         dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
-        dwg.add(dwg.script(content="""function showTitle(o){
-            alert(o.getElementsByTagName("title")[0].textContent);
-        }"""))
+        dwg.add(dwg.script(content="""    function ShowTooltip(evt, obj) {
+        var tooltip = document.getElementById(obj.id+"-tooltip");
+        tooltip.setAttribute("x", evt.clientX + 11);
+        tooltip.setAttribute("y", evt.clientY + 27);
+        tooltip.setAttribute("visibility", "visible");
+    }
+
+    function HideTooltip(evt, obj) {
+        var tooltip = document.getElementById(obj.id+"-tooltip");
+        tooltip.setAttribute("visibility", "hidden");
+    }"""))
         dwg.add(self._draw_signs(dwg))
         dwg.add(self._draw_aspects(dwg))
         dwg.add(self._draw_planets(dwg))
@@ -324,9 +359,19 @@ def dms(degrees):
     f *= 60
     s, f = divmod(f,1)
     return map(int,[d,m,s])
+
+
+def _get_tooltip(dwg, name, text):
+    svg = dwg.svg(id=name+'-tooltip', visibility='hidden' )
+    #svg.add(dwg.rect(insert=(0, 0), size=('100%', '100%'), rx=None, ry=None, fill='rgb(50,50,50)'))
     
+    for i,t in enumerate(text.split('\n')):
+        txt = dwg.text(t, (0,15*(i+1)))
+        svg.add(txt)
+    return svg
+
 
 if __name__ == '__main__':
     name = "astro/static/img/chart.svg"
-    name = "static/img/chart.svg"
+    #name = "static/img/chart.svg"
     Chart().draw(name)

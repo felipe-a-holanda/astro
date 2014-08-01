@@ -16,6 +16,23 @@
                 
             }
         </script>
+        
+        <script>
+        function ShowTooltip(evt, obj) {
+            var tooltip = document.getElementById(obj.id+"-tooltip");
+            tooltip.setAttribute("x", evt.clientX + 11);
+            tooltip.setAttribute("y", evt.clientY + 27);
+            tooltip.setAttribute("visibility", "visible");
+        }
+
+        function HideTooltip(evt, obj) {
+            console.log(obj.id);
+            var tooltip = document.getElementById(obj.id+"-tooltip");
+            tooltip.setAttribute("visibility", "hidden");
+        }
+
+    </script>
+        
     </head>
     <body>
         <div style="width:800px; margin:0 auto;">
@@ -47,5 +64,6 @@
             $('.btn-default').tooltip();
         });
     </script>
+    
 
 </html>
