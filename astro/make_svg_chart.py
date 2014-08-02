@@ -108,7 +108,8 @@ class Aspect(object):
         p2 = polarToCartesian(center, radius, a2)
         #svg = dwg.svg(id = self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
         svg = dwg.svg(id = self.name)
-        line = dwg.line(p1,p2,id = self.name+'_drawing')
+        line = dwg.line(p1,p2)
+        line2 = dwg.line(p1,p2,id = self.name+'_drawing')
         
         diff = lambda x,y: min((2 * 180.0) - abs(x - y), abs(x - y))
         angle = diff(a1, a2)
@@ -142,12 +143,16 @@ class Aspect(object):
                 color = 'none'
                 
         desc = self.get_desc()
-        line.set_desc(_get_tooltip2(desc))
+        line2.set_desc(_get_tooltip2(desc))
+        line2.stroke(color, 10, 0.01)
         
         line.stroke(color, linewidth, alpha)
         #txt = dwg.text(desc, id=self.name+'-tooltip', visibility='hidden')
         
         svg.add(line)
+        svg.add(line2)
+        
+        
         #svg.add(_get_tooltip(dwg, self.name, self.get_desc()))
         return svg
     
@@ -268,7 +273,7 @@ class Chart(object):
         dwg.add(self._draw_planets(dwg))
         if name:
             dwg.save()
-            #self._prettify(name)
+            self._prettify(name)
         
         return dwg
     
@@ -427,12 +432,14 @@ def prettify_text(text):
         
         
 def get_chart():
-    return prettify_text(Chart().draw().tostring())
+    name = "astro/static/img/chart.svg"
+    return prettify_text(Chart().draw(name).tostring())
     
 
 if __name__ == '__main__':
-    get_chart()
     name = "astro/static/img/chart.svg"
+    get_chart()
+    
     
     #name = "static/img/chart.svg"
     Chart().draw(name)
