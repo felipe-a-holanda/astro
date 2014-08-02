@@ -1,69 +1,12 @@
 <html>
     <head>
-        <script>
-            var x=1;
-            function move() {
-                var svg = document.getElementById("chart");
-                var svgDoc = svg.contentDocument; //get the inner DOM of chart.svg
-                var moon = svgDoc.getElementById('Moon');
-                if (x==1){
-                    moon.x.baseVal.value += 50;
-                    x=0;
-                }else{
-                    moon.x.baseVal.value += -50;
-                    x=1;
-                }
-                
-            }
-        </script>
-        
-        <script>
-        function ShowTooltip(evt, obj) {
-            var tooltip = document.getElementById(obj.id+"-tooltip");
-            tooltip.setAttribute("x", evt.clientX + 11);
-            tooltip.setAttribute("y", evt.clientY + 27);
-            tooltip.setAttribute("visibility", "visible");
-        }
-
-        function HideTooltip(evt, obj) {
-            console.log(obj.id);
-            var tooltip = document.getElementById(obj.id+"-tooltip");
-            tooltip.setAttribute("visibility", "hidden");
-        }
-
-    </script>
-        
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="{{ url_for('static', filename='js/tooltip.js') }}"></script>
     </head>
     <body>
         <div style="width:800px; margin:0 auto;">
-            <object  id="chart" data="{{ url_for('static', filename='img/chart.svg') }}" type="image/svg+xml" align="middle">
-                
-            </object>
+            {{ chart | safe }}
         </div>
-        
-        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>
-
-        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</button>
-
-        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Tooltip on bottom</button>
-
-        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Tooltip on right">Tooltip on right</button>
-        
-        <input id="button1" type="button" value="Move moon"
-                    onclick="move()"/>
-            bilu
-       
-    </body>
-    
-    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <script>
-        $(document).ready(function(){
-            $('.btn-default').tooltip();
-        });
-    </script>
-    
-
 </html>

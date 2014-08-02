@@ -1,0 +1,46 @@
+rect {
+shape-rendering: geometricPrecision;
+}
+#content rect {
+shape-rendering: crispEdges;
+transition: opacity 0.3s ease-out;
+-webkit-transition: opacity 0.3s ease-out;
+-o-transition: opacity 0.3s ease-out;
+-moz-transition: opacity 0.3s ease-out;
+}
+#content text {
+transition: opacity 0.3s ease-out;
+-webkit-transition: opacity 0.3s ease-out;
+-o-transition: opacity 0.3s ease-out;
+-moz-transition: opacity 0.3s ease-out;
+}
+#content polygon {
+transition: opacity 0.3s ease-out;
+-webkit-transition: opacity 0.3s ease-out;
+-o-transition: opacity 0.3s ease-out;
+-moz-transition: opacity 0.3s ease-out;
+}
+#content polyline {
+transition: opacity 0.3s ease-out;
+-webkit-transition: opacity 0.3s ease-out;
+-o-transition: opacity 0.3s ease-out;
+-moz-transition: opacity 0.3s ease-out;
+}
+#MotionChartControls rect {
+shape-rendering: crispEdges;
+}
+line {
+shape-rendering: crispEdges;
+}
+#content line {
+shape-rendering: geometricPrecision;
+}
+#content ellipse {
+shape-rendering: geometricPrecision;
+transition: opacity 0.3s ease-out;
+-webkit-transition: opacity 0.3s ease-out;
+-o-transition: opacity 0.3s ease-out;
+-moz-transition: opacity 0.3s ease-out;
+}
+
+

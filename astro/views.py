@@ -6,6 +6,8 @@ import subprocess
 from datetime import datetime
 from collections import namedtuple
 
+from make_svg_chart import get_chart
+
 @app.route('/_calc_planets')
 def calc_planets():
     Planet = namedtuple('Planet', ['name', 'angle', 'sign'])
@@ -37,5 +39,6 @@ def calc_planets():
 
 @app.route("/")
 def index():
-    subprocess.call(['python', 'astro/make_svg_chart.py'])
-    return render_template('chart.html')
+    #subprocess.call(['python', 'astro/make_svg_chart.py'])
+    chart = get_chart()
+    return render_template('chart.html', chart=chart)

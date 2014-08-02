@@ -7,10 +7,13 @@ from collections import namedtuple
 import swisseph as swe
 import codecs
 from datetime import datetime
-
+from bs4 import BeautifulSoup
+#from IPython import embed
 
 N_PLANETS = 10
 CENTER = 300, 300
+
+
 
 class Planet(object):
     PLANET_NAMES = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter','Saturn', 'Uranus', 'Neptune' ,'Pluto']
@@ -47,22 +50,35 @@ class Planet(object):
         width = 20
         r = height/2
         
-        svg = dwg.svg(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
+        #svg = dwg.svg(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
+        svg = dwg.svg(id=self.name)
         g = dwg.g()
         angle = self.angle
-        pos = polarToCartesian(center, radius, angle)
+        posCircle = polarToCartesian(center, radius, angle)
         
-        circle = dwg.circle(center=pos, r=r) 
+        circle = dwg.circle(center=posCircle, r=r) 
         circle.fill('white', opacity=0.5).stroke('black', width=1)
         
-        pos = polarToCartesian((center[0]-r,center[1]-r),radius,self.angle)
-        img = dwg.image('planets/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
-        
         g.add(circle)
+        
+        
+        posImg = polarToCartesian((center[0]-r,center[1]-r),radius,self.angle)
+        img = dwg.image('static/img/planets/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=posImg)
+        
+        
         g.add(img)
+        
+        circle = dwg.circle(center=posCircle, r=r, id=self.name+'_drawing') 
+        circle.fill('white', opacity=0.01).stroke('black', width=1)
+        circle.set_desc(_get_tooltip2(self.get_desc()))
+        #setTitle(circle, _get_tooltip2(self.get_desc()))
+        g.add(circle)
+        
+        
+        
         #desc = self.get_desc()
         #txt = dwg.text(desc, id=self.name+'-tooltip', visibility='hidden')
-        g.add(_get_tooltip(dwg, self.name, self.get_desc()))
+        #g.add(_get_tooltip(dwg, self.name, self.get_desc()))
         #g.set_desc(desc,desc)
         svg.add(g)
         return svg
@@ -90,8 +106,9 @@ class Aspect(object):
         a2 = planet2.angle
         p1 = polarToCartesian(center, radius, a1)
         p2 = polarToCartesian(center, radius, a2)
-        svg = dwg.svg(id = self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
-        line = dwg.line(p1,p2,  )
+        #svg = dwg.svg(id = self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
+        svg = dwg.svg(id = self.name)
+        line = dwg.line(p1,p2,id = self.name+'_drawing')
         
         diff = lambda x,y: min((2 * 180.0) - abs(x - y), abs(x - y))
         angle = diff(a1, a2)
@@ -124,14 +141,14 @@ class Aspect(object):
             if alpha<0:
                 color = 'none'
                 
-        
-        #line.set_desc(title+desc, desc)
+        desc = self.get_desc()
+        line.set_desc(_get_tooltip2(desc))
         
         line.stroke(color, linewidth, alpha)
         #txt = dwg.text(desc, id=self.name+'-tooltip', visibility='hidden')
         
         svg.add(line)
-        svg.add(_get_tooltip(dwg, self.name, self.get_desc()))
+        #svg.add(_get_tooltip(dwg, self.name, self.get_desc()))
         return svg
     
     def is_visible(self):
@@ -193,9 +210,10 @@ class Sign(object):
         colors=['red','green','yellow','blue']
         
         svg = dwg.svg()
-        g = dwg.g(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
+        #g = dwg.g(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
+        g = dwg.g(id=self.name)
         pos = polarToCartesian((center[0],center[1]-height/2),r1-width/2,0)
-        img = dwg.image('signs/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
+        img = dwg.image('static/img/signs/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
         img.rotate(-self.index*30-15,center)
         rotate_around_center(img, -90)
         a1 = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1))
@@ -203,12 +221,19 @@ class Sign(object):
         a1.fill(colors[self.index%len(colors)], opacity=0.5).stroke('black', width=2)
         a2.fill(colors[self.index%len(colors)], opacity=0.25).stroke('black', width=1)
         a2.opacity=0.2
-        #g.set_desc(self.get_desc(planets))
+        
         g.add(a1)
+        
+        a3 = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1), id=self.name+'_drawing')
+        a3.fill(colors[self.index%len(colors)], opacity=0.01).stroke('black', width=1)
+        a3.set_desc(_get_tooltip2(self.get_desc(planets)))
+        
+        
         svg.add(a2)
         g.add(img)
+        g.add(a3)
         svg.add(g)
-        svg.add(_get_tooltip(dwg, self.name, self.get_desc(planets)))
+        #svg.add(_get_tooltip(dwg, self.name, self.get_desc(planets)))
         return svg
 
 
@@ -222,8 +247,11 @@ class Chart(object):
         self.aspects = self._calc_aspects()
         
     
-    def draw(self, name):
-        dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
+    def draw(self, name=None):
+        if name:
+            dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
+        else:
+            dwg = svgwrite.Drawing(size=(600,600), debug=True)
         dwg.add(dwg.script(content="""    function ShowTooltip(evt, obj) {
         var tooltip = document.getElementById(obj.id+"-tooltip");
         tooltip.setAttribute("x", evt.clientX + 11);
@@ -238,8 +266,11 @@ class Chart(object):
         dwg.add(self._draw_aspects(dwg))
         dwg.add(self._draw_signs(dwg))
         dwg.add(self._draw_planets(dwg))
-        dwg.save()
-        self._prettify(name)
+        if name:
+            dwg.save()
+            #self._prettify(name)
+        
+        return dwg
     
     
     
@@ -321,7 +352,7 @@ def polarToCartesian(center, radius, angleInDegrees):
     return x, y
         
 
-def arc(dwg, inner_radius, outer_radius, startAngle, endAngle):
+def arc(dwg, inner_radius, outer_radius, startAngle, endAngle, **kwargs):
     center = CENTER
     
     outer_start_x, outer_start_y = polarToCartesian(center, outer_radius, startAngle);
@@ -338,7 +369,7 @@ def arc(dwg, inner_radius, outer_radius, startAngle, endAngle):
     path_txt += "L {inner_end_x} {inner_end_y} "
     path_txt += "A {inner_radius} {inner_radius} 0 {arcSweep} 1 {inner_start_x} {inner_start_y} "
     
-    path = dwg.path(path_txt.format(**locals()))
+    path = dwg.path(path_txt.format(**locals()), **kwargs)
     
     
     return path
@@ -369,9 +400,40 @@ def _get_tooltip(dwg, name, text):
         txt = dwg.text(t, (0,15*(i+1)))
         svg.add(txt)
     return svg
+    
+def _get_tooltip2(text):
+    return text
+    text = text.replace('\n','<br>')
 
+    return text
+
+
+def prettify(name):
+    with codecs.open(name,'r','utf8') as f:
+        soup = BeautifulSoup(f.read())
+    
+    for title in soup.findAll('title'):
+        title.string = title.string.replace('\n','<br/>\n')
+    with codecs.open(name,'w','utf8') as f:
+        f.write(soup.svg.prettify(formatter=None))
+        
+def prettify_text(text):
+    soup = BeautifulSoup(text)
+    
+    for title in soup.findAll('title'):
+        title.string = title.string.replace('\n','<br/>\n')
+        
+    return soup.svg.prettify(formatter=None)
+        
+        
+def get_chart():
+    return prettify_text(Chart().draw().tostring())
+    
 
 if __name__ == '__main__':
+    get_chart()
     name = "astro/static/img/chart.svg"
+    
     #name = "static/img/chart.svg"
     Chart().draw(name)
+    prettify(name)
