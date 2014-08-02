@@ -252,11 +252,8 @@ class Chart(object):
         self.aspects = self._calc_aspects()
         
     
-    def draw(self, name=None):
-        if name:
-            dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
-        else:
-            dwg = svgwrite.Drawing(size=(600,600), debug=True)
+    def draw(self, name):
+        dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
         dwg.add(dwg.script(content="""    function ShowTooltip(evt, obj) {
         var tooltip = document.getElementById(obj.id+"-tooltip");
         tooltip.setAttribute("x", evt.clientX + 11);
