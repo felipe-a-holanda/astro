@@ -8,7 +8,10 @@ import swisseph as swe
 import codecs
 from datetime import datetime
 from bs4 import BeautifulSoup
+import os
 #from IPython import embed
+
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 N_PLANETS = 10
 CENTER = 300, 300
@@ -254,24 +257,12 @@ class Chart(object):
     
     def draw(self, name):
         dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
-        dwg.add(dwg.script(content="""    function ShowTooltip(evt, obj) {
-        var tooltip = document.getElementById(obj.id+"-tooltip");
-        tooltip.setAttribute("x", evt.clientX + 11);
-        tooltip.setAttribute("y", evt.clientY + 27);
-        tooltip.setAttribute("visibility", "visible");
-    }
-
-    function HideTooltip(evt, obj) {
-        var tooltip = document.getElementById(obj.id+"-tooltip");
-        tooltip.setAttribute("visibility", "hidden");
-    }"""))
         dwg.add(self._draw_aspects(dwg))
         dwg.add(self._draw_signs(dwg))
         dwg.add(self._draw_planets(dwg))
         if name:
             dwg.save()
             self._prettify(name)
-        
         return dwg
     
     
@@ -429,7 +420,7 @@ def prettify_text(text):
         
         
 def get_chart():
-    name = "astro/static/img/chart.svg"
+    name = os.path.join(PATH,'static/img/chart.svg')
     return prettify_text(Chart().draw(name).tostring())
     
 
