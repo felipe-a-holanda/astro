@@ -53,11 +53,18 @@ class Planet(object):
         width = 20
         r = height/2
         
-        #svg = dwg.svg(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
-        svg = dwg.svg(id=self.name)
+        svg = dwg.svg(id=self.name, onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
+        
+        #svg = dwg.svg(id=self.name)
         g = dwg.g()
         angle = self.angle
         posCircle = polarToCartesian(center, radius, angle)
+        
+        
+        highlight = dwg.circle(center=posCircle, r=r, visibility='hidden', id=self.name+'-highlight') 
+        highlight.fill('none').stroke('black', width=5)
+        g.add(highlight)
+    
         
         circle = dwg.circle(center=posCircle, r=r) 
         circle.fill('white', opacity=0.5).stroke('black', width=1)
@@ -109,8 +116,12 @@ class Aspect(object):
         a2 = planet2.angle
         p1 = polarToCartesian(center, radius, a1)
         p2 = polarToCartesian(center, radius, a2)
-        #svg = dwg.svg(id = self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
-        svg = dwg.svg(id = self.name)
+        svg = dwg.svg(id = self.name, onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
+        
+        highlight = dwg.line(p1,p2,id = self.name+'-highlight', visibility='hidden')
+        
+        svg.add(highlight)
+        #svg = dwg.svg(id = self.name)
         line = dwg.line(p1,p2)
         line2 = dwg.line(p1,p2,id = self.name+'_drawing')
         
@@ -148,7 +159,7 @@ class Aspect(object):
         desc = self.get_desc()
         line2.set_desc(_get_tooltip2(desc))
         line2.stroke(color, 10, 0.01)
-        
+        highlight.stroke(color, linewidth+2, 1)
         line.stroke(color, linewidth, alpha)
         #txt = dwg.text(desc, id=self.name+'-tooltip', visibility='hidden')
         
@@ -218,8 +229,12 @@ class Sign(object):
         colors=['red','green','yellow','blue']
         
         svg = dwg.svg()
-        #g = dwg.g(id=self.name, onmousemove="ShowTooltip(evt, this)", onmouseout="HideTooltip(evt, this)")
-        g = dwg.g(id=self.name)
+        g = dwg.g(id=self.name, onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
+        #g = dwg.g(id=self.name)
+        highlight = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1), visibility='hidden', id=self.name+'-highlight')
+        highlight.fill('none', opacity=0.5).stroke('black', width=5)
+        g.add(highlight)
+        
         pos = polarToCartesian((center[0],center[1]-height/2),r1-width/2,0)
         img = dwg.image('static/img/signs/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
         img.rotate(-self.index*30-15,center)
@@ -257,6 +272,18 @@ class Chart(object):
     
     def draw(self, name):
         dwg = svgwrite.Drawing(filename=name, size=(600,600), debug=True)
+        
+        dwg.add(dwg.script(content=""" function mouseHover(evt, obj) {
+    var highlight = document.getElementById(obj.id+"-highlight");
+    highlight.setAttribute("visibility", "visible");
+}
+
+function mouseOut(evt, obj) {
+    var highlight = document.getElementById(obj.id+"-highlight");
+    highlight.setAttribute("visibility", "hidden");
+}"""))
+        
+        
         dwg.add(self._draw_aspects(dwg))
         dwg.add(self._draw_signs(dwg))
         dwg.add(self._draw_planets(dwg))
