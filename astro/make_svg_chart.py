@@ -49,11 +49,12 @@ class Planet(object):
         return svg
     
     def draw(self, dwg, center, radius):
-        height = 20
-        width = 20
+        height = 15.0
+        width = 15.0
         r = height/2
+        r2=10
         
-        svg = dwg.svg(id=self.name, onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
+        svg = dwg.svg(id=self.name, class_='svg_obj svg_planet', onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
         
         #svg = dwg.svg(id=self.name)
         g = dwg.g()
@@ -61,14 +62,13 @@ class Planet(object):
         posCircle = polarToCartesian(center, radius, angle)
         
         
-        highlight = dwg.circle(center=posCircle, r=r, visibility='hidden', id=self.name+'-highlight') 
-        highlight.fill('none').stroke('black', width=5)
-        g.add(highlight)
+        highlight = dwg.circle(center=posCircle, r=r2, visibility='hidden', id=self.name+'-highlight') 
+        highlight.fill('none').stroke('black', width=2)
+        
     
         
-        circle = dwg.circle(center=posCircle, r=r) 
-        circle.fill('white', opacity=0.5).stroke('black', width=1)
-        
+        circle = dwg.circle(center=posCircle, r=r2) 
+        circle.fill('white', opacity=0.5).stroke('none', width=0)
         g.add(circle)
         
         
@@ -77,9 +77,10 @@ class Planet(object):
         
         
         g.add(img)
+        g.add(highlight)
         
         circle = dwg.circle(center=posCircle, r=r, id=self.name+'_drawing') 
-        circle.fill('white', opacity=0.01).stroke('black', width=1)
+        circle.fill('white', opacity=0.01).stroke('none', width=0)
         circle.set_desc(_get_tooltip2(self.get_desc()))
         #setTitle(circle, _get_tooltip2(self.get_desc()))
         g.add(circle)
@@ -116,7 +117,7 @@ class Aspect(object):
         a2 = planet2.angle
         p1 = polarToCartesian(center, radius, a1)
         p2 = polarToCartesian(center, radius, a2)
-        svg = dwg.svg(id = self.name, onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
+        svg = dwg.svg(id = self.name, class_='svg_obj svg_aspect', onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
         
         highlight = dwg.line(p1,p2,id = self.name+'-highlight', visibility='hidden')
         
@@ -158,7 +159,7 @@ class Aspect(object):
                 
         desc = self.get_desc()
         line2.set_desc(_get_tooltip2(desc))
-        line2.stroke(color, 10, 0.01)
+        line2.stroke(color, 10, 0.001)
         highlight.stroke(color, linewidth+2, 1)
         line.stroke(color, linewidth, alpha)
         #txt = dwg.text(desc, id=self.name+'-tooltip', visibility='hidden')
@@ -229,7 +230,7 @@ class Sign(object):
         colors=['red','green','yellow','blue']
         
         svg = dwg.svg()
-        g = dwg.g(id=self.name, onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
+        g = dwg.g(id=self.name, class_='svg_obj svg_sign', onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
         #g = dwg.g(id=self.name)
         highlight = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1), visibility='hidden', id=self.name+'-highlight')
         highlight.fill('none', opacity=0.5).stroke('black', width=5)
@@ -239,6 +240,11 @@ class Sign(object):
         img = dwg.image('static/img/signs/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
         img.rotate(-self.index*30-15,center)
         rotate_around_center(img, -90)
+        
+        
+        #img_svg = xml.dom.minidom.parse('static/img/signs/%02d-%s.svg'%(self.index+1,self.name.lower())).getElementsByTagName('svg')[0].toxml()
+        
+        
         a1 = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1))
         a2 = arc(dwg, r3, r2, 30*self.index, 30*(self.index+1))
         a1.fill(colors[self.index%len(colors)], opacity=0.5).stroke('black', width=2)
@@ -452,7 +458,7 @@ def get_chart():
     
 
 if __name__ == '__main__':
-    name = "astro/static/img/chart.svg"
+    name = "static/img/chart.svg"
     get_chart()
     
     
