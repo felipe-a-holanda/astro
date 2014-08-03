@@ -1,4 +1,4 @@
-from fabric.operations import local as lrun, run
+from fabric.operations import local as lrun, run, sudo
 from fabric.api import task
 from fabric.state import env
 from contextlib import contextmanager
@@ -17,10 +17,12 @@ def local():
 @task
 def remote():
     env.run = run
+    env.user = 'www-data'
     env.hosts = ['root@104.131.231.202']    
     env.directory = '/var/www/astro/'
     env.activate = 'source {directory}/env/bin/activate'.format(**env)
     env.github_repo = 'https://github.com/flp9001/astro.git'
+    env.shell = "/bin/bash -c"
     
 
 @contextmanager
@@ -40,9 +42,9 @@ def _restart_webserver():
 @task
 def deploy():
     with cd(env.directory):
-        env.run("git pull")
-        env.run("git reset --hard")
-        env.run("git checkout -f")
+        sudo("git pull", user=env.user)
+        sudo("git reset --hard", user=env.user)
+        sudo("git checkout -f", user=env.user)
     _install_dependencies()
     _restart_webserver()
         
@@ -51,13 +53,6 @@ def deploy():
 
 @task
 def setup():
-    env.run('virtualenv env')
+    with cd(env.directory):
+        env.run('virtualenv env')
     _install_dependencies()
-    
-
-
-
-
-@task
-def install():
-    env.run('echo "teste"')
