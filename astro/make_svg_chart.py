@@ -9,14 +9,59 @@ import codecs
 from datetime import datetime
 from bs4 import BeautifulSoup
 import os
+from svgwrite.drawing import Drawing
 #from IPython import embed
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
-N_PLANETS = 10
+
 CENTER = 300, 300
 
 
+
+def get_xml(self):
+    """ Get the XML representation as `ElementTree` object.
+
+    :return: XML `ElementTree` of this object and all its subelements
+
+    """
+    profile = self.profile
+    version = self.version
+    #self.attribs['xmlns'] = "http://www.w3.org/2000/svg"
+    self.attribs['xmlns:xlink'] = "http://www.w3.org/1999/xlink"
+    self.attribs['xmlns:ev'] = "http://www.w3.org/2001/xml-events"
+
+    self.attribs['baseProfile'] = profile
+    self.attribs['version'] = version
+    return super(Drawing, self).get_xml()
+svgwrite.drawing.Drawing.get_xml = get_xml
+
+class LoadedSVG(svgwrite.base.BaseElement):
+    elementname = 'g'
+    def __init__(self, filename, **extra):
+        super(LoadedSVG, self).__init__(**extra)
+        svgwrite.etree.etree.register_namespace("","http://www.w3.org/2000/svg")
+        self.elements = svgwrite.etree.etree.parse(filename).getroot().getchildren()
+    
+    def get_xml(self):
+        """ Get the XML representation as `ElementTree` object.
+  
+        :return: XML `ElementTree` of this object and all its subelements
+  
+        """
+        xml = svgwrite.etree.etree.Element(self.elementname)
+        if self.debug:
+            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        for attribute, value in self.attribs.items():
+            # filter 'None' values
+            if value is not None:
+                value = self.value_to_string(value)
+                if value: # just add not empty attributes
+                    xml.set(attribute, value)
+  
+        for element in self.elements:
+            xml.append(element)
+        return xml
 
 class Planet(object):
     PLANET_NAMES = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter','Saturn', 'Uranus', 'Neptune' ,'Pluto']
@@ -73,10 +118,20 @@ class Planet(object):
         
         
         posImg = polarToCartesian((center[0]-r,center[1]-r),radius,self.angle)
-        img = dwg.image('static/img/planets/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=posImg)
+        imgpath = PATH+'/static/img/planets/%02d-%s.svg'%(self.index+1,self.name.lower())
+        
+        #img = dwg.image(imgpath, height=height, width=width, insert=posImg)
+        
+        img2 = LoadedSVG(imgpath)
+        
+        #img2 = dwg.path("m4.5114E-7,49.861a50,50,0,1,1,0,0.27778zm8.3333,0a41.667,41.667,0,1,0,0,-0.27778zm30.556,0a11.111,11.111,0,1,0,0,-0.27778z")
+        g2=dwg.g()
+        g2.add(img2)
+        g2.translate(posImg[0],posImg[1])
+        g2.scale(15.0/100)
         
         
-        g.add(img)
+        g.add(g2)
         g.add(highlight)
         
         circle = dwg.circle(center=posCircle, r=r, id=self.name+'_drawing') 
@@ -227,19 +282,34 @@ class Sign(object):
     def draw(self, dwg, center, r1, r2, r3, planets):
         height=30
         width=30
-        colors=['red','green','yellow','blue']
+        colors1=['#FF7E7E','#7EBF7E','#FFFF7E','#7E7EFF']
+        colors2=['#FFBFBF','#BFDFBF','#FFFFBF','#BFBFFF']
         
         svg = dwg.svg()
         g = dwg.g(id=self.name, class_='svg_obj svg_sign', onmousemove="mouseHover(evt, this)", onmouseout="mouseOut(evt, this)")
         #g = dwg.g(id=self.name)
-        highlight = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1), visibility='hidden', id=self.name+'-highlight')
-        highlight.fill('none', opacity=0.5).stroke('black', width=5)
-        g.add(highlight)
+        highlight = arc(dwg, r3, r1, 30*self.index, 30*(self.index+1), visibility='hidden', id=self.name+'-highlight')
+        highlight.fill('none', opacity=0.5).stroke('black', width=3)
+        
         
         pos = polarToCartesian((center[0],center[1]-height/2),r1-width/2,0)
         img = dwg.image('static/img/signs/%02d-%s.svg'%(self.index+1,self.name.lower()), height=height, width=width, insert=pos)
         img.rotate(-self.index*30-15,center)
         rotate_around_center(img, -90)
+        
+        g2=dwg.g()
+        l = LoadedSVG(PATH+'/static/img/signs/%02d-%s.svg'%(self.index+1,self.name.lower()))
+        g2.add(l)
+        #g2.rotate(-15-self.index*30, (center[0], center[1]))
+        #g2.scale(0.1)
+        
+        scale = 0.4
+        
+        g2.rotate(-15-self.index*30, (center[0], center[1]))
+        g2.translate(35-scale*50, center[1]-50.0*scale)
+        g2.rotate(-90, (100*scale/2, 100*scale/2))
+        g2.scale(scale)
+        
         
         
         #img_svg = xml.dom.minidom.parse('static/img/signs/%02d-%s.svg'%(self.index+1,self.name.lower())).getElementsByTagName('svg')[0].toxml()
@@ -247,20 +317,22 @@ class Sign(object):
         
         a1 = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1))
         a2 = arc(dwg, r3, r2, 30*self.index, 30*(self.index+1))
-        a1.fill(colors[self.index%len(colors)], opacity=0.5).stroke('black', width=2)
-        a2.fill(colors[self.index%len(colors)], opacity=0.25).stroke('black', width=1)
+        a1.fill(colors1[self.index%len(colors1)], opacity=1).stroke('black', width=2)
+        a2.fill(colors2[self.index%len(colors2)], opacity=1).stroke('black', width=1)
         a2.opacity=0.2
         
         g.add(a1)
         
         a3 = arc(dwg, r2, r1, 30*self.index, 30*(self.index+1), id=self.name+'_drawing')
-        a3.fill(colors[self.index%len(colors)], opacity=0.01).stroke('black', width=1)
+        a3.fill(colors1[self.index%len(colors1)], opacity=0.01).stroke('black', width=1)
         a3.set_desc(_get_tooltip2(self.get_desc(planets)))
         
         
         svg.add(a2)
-        g.add(img)
+        #g.add(img)
+        g.add(g2)
         g.add(a3)
+        g.add(highlight)
         svg.add(g)
         #svg.add(_get_tooltip(dwg, self.name, self.get_desc(planets)))
         return svg
@@ -268,6 +340,7 @@ class Sign(object):
 
 class Chart(object):
     N_PLANETS = 10
+    N_SIGNS = 12
     def __init__(self, now=None):
         self.now = now
         if not now:
@@ -333,7 +406,7 @@ function mouseOut(evt, obj) {
         r3 = 200
         
         zodiac = dwg.svg(id='zodiac')
-        signs = [Sign(i) for i in range(12)]
+        signs = [Sign(i) for i in range(self.N_SIGNS)]
         for sign in signs:
             zodiac.add(sign.draw(dwg, center, r1, r2, r3, self.planets))
         return zodiac
@@ -428,6 +501,7 @@ def _get_tooltip(dwg, name, text):
     return svg
     
 def _get_tooltip2(text):
+    #return ""
     return text
     text = text.replace('\n','<br>')
 
@@ -438,8 +512,8 @@ def prettify(name):
     with codecs.open(name,'r','utf8') as f:
         soup = BeautifulSoup(f.read())
     
-    for title in soup.findAll('title'):
-        title.string = title.string.replace('\n','<br/>\n')
+    #for title in soup.findAll('title'):
+    #    title.string = title.string.replace('\n','<br/>\n')
     with codecs.open(name,'w','utf8') as f:
         f.write(soup.svg.prettify(formatter=None))
         
