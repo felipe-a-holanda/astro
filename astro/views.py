@@ -1,12 +1,23 @@
+#coding: utf-8
 from astro import app
 from flask import Flask, jsonify, render_template, request
 
 import swisseph as swe
 import subprocess
 from datetime import datetime
-from collections import namedtuple
+from collections import namedtuple, defaultdict
+from models import *
 
 from make_svg_chart import get_chart
+
+
+
+planet_names = ['Sol', 'Lua', 'Mercurio', 'Venus', 'Marte', 'Jupiter','Saturno', 'Urano', 'Netuno' ,'Plutao']
+sign_names = ['Aries', 'Touro', 'Gemeos', 'Cancer', 'Leao', 'Virgem', 'Libra', 'Escorpiao', 'Sagitario', 'Capricornio', 'Aquario', 'Peixes']
+
+planets = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
+signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']
+
 
 @app.route('/_calc_planets')
 def calc_planets():
@@ -42,3 +53,24 @@ def index():
     #subprocess.call(['python', 'astro/make_svg_chart.py'])
     chart = get_chart()
     return render_template('chart.html', chart=chart)
+
+
+
+
+
+@app.route("/people")
+def people_by_sign():
+    people = Event.objects()
+    d = defaultdict(lambda: defaultdict(list))
+    
+    
+    for person in people:
+        for planet in person.birth._fields:
+            sign = signs[int(getattr(person.birth,planet)/30)]
+            d[planet.title()][sign].append(person)
+    for i in d:
+        for j in d[i]:
+            d[i][j] = sorted(d[i][j])
+    
+        
+    return render_template('people_by_signs.html', planets=planets, signs=signs, people=d)

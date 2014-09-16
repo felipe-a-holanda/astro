@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <td>Signo\Planeta</td>
+            {% for planet in planets %}
+            <td>{{ planet }}</td>
+            {% endfor %}
+            
+        </tr>
+    </thead>
+    {% for sign in signs %}
+    <tr>
+        <td>{{ sign }}</td>
+        {% for planet in planets %}
+        <td>
+            {% for person in people[planet][sign] %} 
+                {{ person.name }} </br> 
+            {% endfor %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
